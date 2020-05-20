@@ -1,4 +1,5 @@
 import React from 'react'
+import './draft.css'
 
 const Draft = () => (
     <div>

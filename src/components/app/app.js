@@ -1,7 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, 
     Route,
-} from 'react-router-dom'
+} from 'react-router-dom';
+import './app.css';
 
 import Nav from '../nav/nav';
 import Signup from '../signup/signup';
