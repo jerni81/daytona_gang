@@ -8,12 +8,13 @@ const Nav = () => (
   <div>
     <h1>Nav</h1>
     <ul>
-      <li>
+      {/* <li>
         <Link to={ROUTES.SIGN_IN}>Sign In</Link>
       </li>
       <li>
-        <Link to={ROUTES.LANDING}>Landing</Link>
+        <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
       </li>
+
       <li>
         <Link to={ROUTES.HOME}>Home</Link>
       </li>
@@ -22,8 +23,21 @@ const Nav = () => (
       </li>
       <li>
         <Link to={ROUTES.ADMIN}>Admin</Link>
+      </li> */}
+      <li>
+        <Link to={ROUTES.RULES}>Rules</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.GRID}>Drivers</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.LEADERBOARD}>Leader Board</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.DRAFT}>Draft</Link>
       </li>
     </ul>
+
   </div>
 );
  
