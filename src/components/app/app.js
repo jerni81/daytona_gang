@@ -4,13 +4,13 @@ import {BrowserRouter as Router,
 } from 'react-router-dom';
 import './app.css';
 
-import Nav from '../nav/nav';
-import Signup from '../signup/signup';
-import SignIn from '../signin/signin'
-import Home from '../home/home';
-import Account from '../account/account';
-import Admin from '../admin/admin';
-import Rules from '../rules/rules';
+import Nav from '../Nav/nav';
+import Signup from '../SignUp/signup';
+import SignIn from '../SignIn/signin'
+import Home from '../Home/home';
+import Account from '../Account/account';
+import Admin from '../Admin/admin';
+import Rules from '../Rules/rules';
 import Grid from '../StartGrid/grid';
 import LeaderBoard from '../LeaderBoard/LeaderBoard';
 import Draft from '../Draft/draft';
