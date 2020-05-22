@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
+import "./signin.css";
 
 import { SignUpLink } from "../SignUp/signup";
 import { withFirebase } from "../Firebase";
@@ -53,7 +54,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === "" || email === "";
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className="form">
         <input
           name="email"
           value={email}

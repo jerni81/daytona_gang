@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./nav.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import SignOutButton from "../SignOut/signout";
 import * as ROUTES from "../../constants/routes";
@@ -33,9 +32,17 @@ const NavigationAuth = () => (
 );
 
 const NavigationNonAuth = () => (
-  <ul className="navBar">
+  <div>
     <h2>Welcome Race Fans!!!</h2>
-  </ul>
+    <ul className="navBar">
+      <li>
+        <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+      </li>
+    </ul>
+  </div>
 );
 
 export default Nav;

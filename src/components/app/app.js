@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 
 import Nav from "../Nav/nav";
@@ -44,8 +43,7 @@ class App extends Component {
   }
 
   render() {
-
-    const authUser = this.state.authUser
+    const authUser = this.state.authUser;
 
     return (
       <div>
@@ -57,8 +55,6 @@ class App extends Component {
             <div className={authUser ? "show" : "noShow"}>
               <Route exact path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.LANDING} component={Landing} />
-              <Route path={ROUTES.SIGN_IN} component={SignIn} />
-              <Route path={ROUTES.SIGN_UP} component={Signup} />
               <Route path={ROUTES.SIGN_OUT} component={SignOut} />
               <Route path={ROUTES.PASS_CHANGE} component={PassChange} />
               <Route path={ROUTES.PASS_FORGET} component={PassForget} />
@@ -68,10 +64,12 @@ class App extends Component {
               <Route path={ROUTES.RULES} component={Rules} />
               <Route path={ROUTES.LEADERBOARD} component={LeaderBoard} />
               <Route path={ROUTES.GRID} component={Grid} />
-              <Route path={ROUTES.DRAFT} component={Draft} /> 
+              <Route path={ROUTES.DRAFT} component={Draft} />
             </div>
             <div className={authUser ? "noShow" : "show"}>
-              <SignIn />
+              <Route exact path={ROUTES.HOME} component={Home} />
+              <Route path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route path={ROUTES.SIGN_UP} component={Signup} />
             </div>
           </div>
         </Router>
