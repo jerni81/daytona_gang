@@ -55,9 +55,9 @@ class App extends Component {
             <Nav authUser={this.state.authUser} />
             <hr />
             <div className={authUser ? "show" : "noShow"}>
-              <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route exact path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.LANDING} component={Landing} />
-              <Route path={ROUTES.HOME} component={Home} />
+              <Route path={ROUTES.SIGN_IN} component={SignIn} />
               <Route path={ROUTES.SIGN_UP} component={Signup} />
               <Route path={ROUTES.SIGN_OUT} component={SignOut} />
               <Route path={ROUTES.PASS_CHANGE} component={PassChange} />
