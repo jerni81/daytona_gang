@@ -2,3 +2,10 @@ h1 {
   text-align: center;
 }
 
+.show {
+
+}
+
+.noShow {
+  display: none;
+}
