@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./nav.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
+import SignOutButton from '../SignOut/signout';
 import * as ROUTES from "../../constants/routes";
 
 const Nav = () => (
@@ -27,6 +27,7 @@ const Nav = () => (
       </li>
     </ul> */}
     <div>
+      <SignOutButton/>
       <ul className="navBar">
         <li>
           <Link to={ROUTES.RULES}>Rules</Link>
