@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
@@ -20,13 +20,37 @@ import LeaderBoard from "../LeaderBoard/LeaderBoard";
 import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
+import { withFirebase } from '../Firebase';
 
-const App = () => (
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      authUser: null,
+    };
+  }
+
+  componentDidMount() {
+    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState({ authUser })
+        : this.setState({ authUser: null });
+    });
+  }
+
+  componentWillUnmount() {
+    this.listener();
+  }
+ 
+  render() {
+    return (
   <div>
     <h1>Daytona Gang Race Pool!!!</h1>
     <Router>
       <div>
-        <Nav />
+        <Nav authUser={this.state.authUser} />
         <hr />
         <Route exact path={ROUTES.HOME} component={Home} />
         <Route path={ROUTES.LANDING} component={Landing} />
@@ -45,6 +69,10 @@ const App = () => (
       </div>
     </Router>
   </div>
-);
+    );
+  }
+}
+ 
 
-export default App;
+export default withFirebase(App);
+
