@@ -1,8 +1,11 @@
 import React from "react";
+import "./home.css"
+import group from "../Images/group.jpg"
 
 const Home = () => (
   <div>
-    <h1>Home</h1>
+    <img src={group} className="center"/>
+  
   </div>
 );
 

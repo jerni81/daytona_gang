@@ -1,0 +1,9 @@
+.center {
+    position: fixed;
+    display: block;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    width: 75%;
+    overflow: hidden;
+    
+  }
