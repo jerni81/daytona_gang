@@ -20,6 +20,7 @@ import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
+import { getDrivers } from "../Services/api-helper";
 
 class App extends Component {
   constructor(props) {
@@ -27,8 +28,17 @@ class App extends Component {
 
     this.state = {
       authUser: null,
+      drivers: [],
     };
   }
+
+  gotDrivers = async () => {
+    console.log(this.state.drivers);
+
+    const drivers = await getDrivers();
+    this.setState({ drivers });
+    console.log(this.state.drivers);
+  };
 
   componentDidMount() {
     this.listener = this.props.firebase.auth.onAuthStateChanged((authUser) => {
@@ -36,6 +46,8 @@ class App extends Component {
         ? this.setState({ authUser })
         : this.setState({ authUser: null });
     });
+
+    this.gotDrivers();
   }
 
   componentWillUnmount() {
