@@ -27,19 +27,22 @@ const Rules = () => (
     <p>
       Stage 3 will be 30 points for the
       1st place driver descending by 3 each position down to 3 points for the
-      the 10th place driver. Again the highest placed legal finisher of the Final
+      the 10th place driver. 
+    </p>
+    <p>  
+      Again the highest placed legal finisher of the Final
       Stage and the Race will take half the pot and the participant with the 
       highest number of points combined for both legal drivers and all three 
       stages will take the other half. 
      </p>
      <p> 
-      If a not chosen in the draft should win, the
+      If a driver not chosen in the draft should win, the
       points winner will take the whole pot. 
      </p>
      <p>
       We will follow NASCAR decisions when it comes to disqualifications, and 
       removal of points and wins. If a driver has their points removed it does 
-      not effect the points total of any other driver. If the winning driver is 
+      not effect the points total of any other driver. 
      </p>
      <p> 
       The list of participants will be put into an automatic randomizer for the 
@@ -52,7 +55,7 @@ const Rules = () => (
     </p>
     <p>
       Winnings will be paid out 36 hrs after the race ends to allow time for NASCAR 
-      make the race results final. 
+      to set the final race results. 
     </p>
     <p>
       Ladies and Gentlemen start your engines, and boogity boogity boogity lets goo
