@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+// import axios from 'axios'
 import "./app.css";
 
 import Nav from "../Nav/nav";
@@ -46,6 +47,12 @@ class App extends Component {
         ? this.setState({ authUser })
         : this.setState({ authUser: null });
     });
+
+    // axios.get(`https://daytona-gang.firebaseio.com/drivers.json`)
+    // .then(res => {
+    //   const drivers = res.data;
+    //   this.setState({ drivers });
+    // })
 
     this.gotDrivers();
   }

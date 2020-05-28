@@ -1,8 +1,7 @@
 const axios = require("axios");
 
-// const BASE_URL = 'http://localhost:3001';
 const BASE_URL =
-  "https://cors-anywhere.herokuapp.com/https://daytona-gang.firebaseio.com/";
+  "https://daytona-gang.firebaseio.com/";
 
 const api = axios.create({
   baseURL: BASE_URL,
