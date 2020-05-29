@@ -41,8 +41,6 @@ class SignUpFormBase extends Component {
       .catch((error) => {
         this.setState({ error });
       });
-
-
   };
 
   onChange = (event) => {

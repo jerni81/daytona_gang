@@ -12,7 +12,9 @@ const Nav = ({ authUser }) => (
 const NavigationAuth = () => (
   <div>
     <div className="signout">
-      <Link to={ROUTES.HOME}><SignOutButton /></Link>
+      <Link to={ROUTES.HOME}>
+        <SignOutButton />
+      </Link>
     </div>
     <ul className="navBar">
       <li>

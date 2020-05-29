@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import axios from 'axios'
 import "./app.css";
 
 import Nav from "../Nav/nav";
@@ -21,7 +20,6 @@ import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
-// import { getDrivers } from "../Services/api-helper";
 
 class App extends Component {
   constructor(props) {
@@ -33,36 +31,17 @@ class App extends Component {
     };
   }
 
-
-
-  // gotDrivers = async () => {
-  //   console.log(this.state.drivers);
-
-  //   const drivers = await getDrivers();
-  //   this.setState({ drivers });
-  //   console.log(this.state.drivers);
-  // };
-
   componentDidMount() {
     this.listener = this.props.firebase.auth.onAuthStateChanged((authUser) => {
       authUser
         ? this.setState({ authUser })
         : this.setState({ authUser: null });
 
-        // const userId = firebase.auth().currentUser.uid;
-        // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-        //   const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        //   console.log(username);
-          
+      // const userId = firebase.auth().currentUser.uid;
+      // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      //   const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+      //   console.log(username);
     });
-
-    // axios.get(`https://daytona-gang.firebaseio.com/drivers.json`)
-    // .then(res => {
-    //   const drivers = res.data;
-    //   this.setState({ drivers });
-    // })
-
-    // this.gotDrivers();
   }
 
   componentWillUnmount() {
