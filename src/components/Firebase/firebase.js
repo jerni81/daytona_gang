@@ -3,7 +3,7 @@ import "firebase/auth";
 import firebase from "firebase"
 
 const firebaseConfig = {
-  apiKey: ,
+  apiKey: "AIzaSyBS_Sq6wPNPx8iePIWcqjGdyX2uiZiAnko",
   authDomain: "daytona-gang.firebaseapp.com",
   databaseURL: "https://daytona-gang.firebaseio.com",
   projectId: "daytona-gang",
