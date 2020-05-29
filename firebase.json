@@ -8,7 +8,7 @@
     ]
   },
   "hosting": {
-    "site": "daytona-gang-race-pool",
+    "site": "daytona-gang",
     "public": "public",
     "ignore": [
       "firebase.json",

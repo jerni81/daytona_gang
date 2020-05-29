@@ -21,7 +21,7 @@ import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
-import { getDrivers } from "../Services/api-helper";
+// import { getDrivers } from "../Services/api-helper";
 
 class App extends Component {
   constructor(props) {
@@ -33,19 +33,27 @@ class App extends Component {
     };
   }
 
-  gotDrivers = async () => {
-    console.log(this.state.drivers);
 
-    const drivers = await getDrivers();
-    this.setState({ drivers });
-    console.log(this.state.drivers);
-  };
+
+  // gotDrivers = async () => {
+  //   console.log(this.state.drivers);
+
+  //   const drivers = await getDrivers();
+  //   this.setState({ drivers });
+  //   console.log(this.state.drivers);
+  // };
 
   componentDidMount() {
     this.listener = this.props.firebase.auth.onAuthStateChanged((authUser) => {
       authUser
         ? this.setState({ authUser })
         : this.setState({ authUser: null });
+
+        // const userId = firebase.auth().currentUser.uid;
+        // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+        //   const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        //   console.log(username);
+          
     });
 
     // axios.get(`https://daytona-gang.firebaseio.com/drivers.json`)
@@ -54,7 +62,7 @@ class App extends Component {
     //   this.setState({ drivers });
     // })
 
-    this.gotDrivers();
+    // this.gotDrivers();
   }
 
   componentWillUnmount() {
