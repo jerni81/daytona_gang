@@ -3,14 +3,14 @@ import "firebase/auth";
 import firebase from "firebase"
 
 const firebaseConfig = {
-  apiKey: ,
-  authDomain: "daytona-gang.firebaseapp.com",
-  databaseURL: "https://daytona-gang.firebaseio.com",
-  projectId: "daytona-gang",
-  storageBucket: "daytona-gang.appspot.com",
-  messagingSenderId: "263582169379",
-  appId: "1:263582169379:web:19d897dc6d07127ef8b496",
-  measurementId: "G-TP9Y25LP53",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 class Firebase {
@@ -18,17 +18,18 @@ class Firebase {
     app.initializeApp(firebaseConfig);
 
     this.auth = app.auth();
-
-    const database = firebase.database();
+    this.database = firebase.database();
   }
 
   // *** Auth API ***
 
-  doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
+  doCreateUserWithEmailAndPassword = (email, password) => {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  }
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+  doSignInWithEmailAndPassword = (email, password) => {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
 
   doSignOut = () => this.auth.signOut();
 
