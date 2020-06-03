@@ -20,6 +20,7 @@ import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
+import firebase from "firebase";
 
 class App extends Component {
   constructor(props) {
@@ -36,11 +37,16 @@ class App extends Component {
       authUser
         ? this.setState({ authUser })
         : this.setState({ authUser: null });
+    });
 
-      // const userId = firebase.auth().currentUser.uid;
-      // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-      //   const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-      //   console.log(username);
+    const driversRef = firebase.database().ref("drivers");
+    driversRef.on("value", (snapshot) => {
+      let drivers = snapshot.val();
+
+      this.setState({
+        drivers: drivers,
+      });
+      console.log(this.state.drivers);
     });
   }
 
@@ -69,7 +75,10 @@ class App extends Component {
 
               <Route path={ROUTES.RULES} component={Rules} />
               <Route path={ROUTES.LEADERBOARD} component={LeaderBoard} />
-              <Route path={ROUTES.GRID} component={Grid} />
+              <Route
+                path={ROUTES.GRID}
+                render={() => <Grid drivers={this.state.drivers} />}
+              />
               <Route path={ROUTES.DRAFT} component={Draft} />
             </div>
             <div className={authUser ? "noShow" : "show"}>

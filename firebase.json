@@ -6,6 +6,12 @@
     "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run lint"]
   },
   "hosting": {
+    "headers": [
+      {
+        "source": "/service-worker.js",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      }
+    ],
     "site": "daytona-gang",
     "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],

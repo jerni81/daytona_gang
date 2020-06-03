@@ -37,6 +37,8 @@ class Firebase {
 
   doPasswordUpdate = (password) =>
     this.auth.currentUser.updatePassword(password);
+
+  // API calls
 }
 
 export default Firebase;
