@@ -1,9 +1,17 @@
 import React from "react";
+
+import DraftTime from "../Timer/draftCount";
+import UPicks from "./userPicks";
+import Field from "./field";
 import "./draft.css";
 
-const Draft = () => (
-  <div>
-    <h1>Draft</h1>
+const Draft = (props) => (
+  <div className="draft">
+    <div className="sidebar">
+      <DraftTime />
+      <UPicks />
+    </div>
+    <Field drivers={props.drivers} />
   </div>
 );
 

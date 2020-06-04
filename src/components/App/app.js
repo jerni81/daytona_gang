@@ -13,7 +13,7 @@ import PassForget from "../PasswordForget/passwordforget";
 import Account from "../Account/account";
 import Admin from "../Admin/admin";
 
-import TonaCount from "../Timer/daytonaCount"
+import TonaCount from "../Timer/daytonaCount";
 import Rules from "../Rules/rules";
 import Grid from "../StartGrid/grid";
 import LeaderBoard from "../LeaderBoard/LeaderBoard";
@@ -83,7 +83,10 @@ class App extends Component {
                 path={ROUTES.GRID}
                 render={() => <Grid drivers={this.state.drivers} />}
               />
-              <Route path={ROUTES.DRAFT} component={Draft} />
+              <Route
+                path={ROUTES.DRAFT}
+                render={() => <Draft drivers={this.state.drivers} />}
+              />
             </div>
             <div className={authUser ? "noShow" : "show"}>
               <Route exact path={ROUTES.HOME} component={Home} />
