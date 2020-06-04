@@ -62,8 +62,10 @@ class App extends Component {
     return (
       <div>
         <h1>Daytona Gang Race Pool!!!</h1>
-        <TonaCount />
-        <h4>Until Race Day!!!</h4>
+        <div className="tonaClock">
+          <h4>Countdown to Daytona 500!!!</h4>
+          <TonaCount />
+        </div>
         <Router>
           <div>
             <Nav authUser={this.state.authUser} />
