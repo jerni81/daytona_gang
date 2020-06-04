@@ -2,7 +2,6 @@ import React from "react";
 import "./grid.css";
 
 const Grid = (props) => {
-  console.log(props.drivers);
   return (
     <div>
       <h1>Grid</h1>

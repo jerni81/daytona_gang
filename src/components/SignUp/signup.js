@@ -5,6 +5,7 @@ import "./signup.css";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
+import firebase from "firebase";
 
 const SignUp = () => (
   <div>
@@ -37,10 +38,17 @@ class SignUpFormBase extends Component {
       .then((authUser) => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
+        // console.log(this.props.auth.username);
       })
       .catch((error) => {
         this.setState({ error });
       });
+
+    // console.log(this.state.username);
+
+    firebase.database().ref("users/").push({
+      username,
+    });
   };
 
   onChange = (event) => {
