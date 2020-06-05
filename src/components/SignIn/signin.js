@@ -18,6 +18,7 @@ const SignIn = () => (
 const INITIAL_STATE = {
   email: "",
   password: "",
+  user: null,
   error: null,
 };
 
@@ -33,8 +34,10 @@ class SignInFormBase extends Component {
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
+      .then((user) => {
+        this.setState({ ...INITIAL_STATE, user });
+        console.log("this is user from signin: ", user);
+
         this.props.history.push(ROUTES.HOME);
       })
       .catch((error) => {

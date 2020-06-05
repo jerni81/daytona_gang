@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./timer.css";
 
 class DraftTime extends Component {
   state = {
@@ -35,10 +36,15 @@ class DraftTime extends Component {
   render() {
     const { minutes, seconds } = this.state;
     return (
-      <div>
+      <div
+        className={
+          minutes === 0 && seconds < 11 ? "red container" : "container"
+        }
+      >
         {minutes === 0 && seconds === 0 ? (
           <h1>Busted!</h1>
         ) : (
+          //pick last available driver
           <h1>
             {" "}
             {minutes}:{seconds < 10 ? `0${seconds}` : seconds}

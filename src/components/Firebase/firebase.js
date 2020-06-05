@@ -28,7 +28,19 @@ class Firebase {
   };
 
   doSignInWithEmailAndPassword = (email, password) => {
-    return this.auth.signInWithEmailAndPassword(email, password);
+    return this.auth
+      .signInWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        //usersRef.orderByChild(‘email’).equalTo(‘user-i-need-to-find@gmail.com’).once(‘value’).then(…)
+        this.database
+          .ref("users/")
+          .orderByChild("userID")
+          .equalTo(authUser.user.uid)
+          .once("value")
+          .then((user) => {
+            return user;
+          });
+      });
   };
 
   doSignOut = () => this.auth.signOut();
