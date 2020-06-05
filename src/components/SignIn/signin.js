@@ -36,7 +36,7 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then((user) => {
         this.setState({ ...INITIAL_STATE, user });
-        console.log("this is user from signin: ", user);
+        // console.log("this is user from signin: ", this.state);
 
         this.props.history.push(ROUTES.HOME);
       })

@@ -13,7 +13,7 @@ import PassForget from "../PasswordForget/passwordforget";
 import Account from "../Account/account";
 import Admin from "../Admin/admin";
 
-import TonaCount from "../Timer/daytonaCount";
+import Header from "../Header/header";
 import Rules from "../Rules/rules";
 import Grid from "../StartGrid/grid";
 import LeaderBoard from "../LeaderBoard/LeaderBoard";
@@ -22,7 +22,6 @@ import Draft from "../Draft/draft";
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 import firebase from "firebase";
-import tonaCount from "../Timer/daytonaCount";
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +29,7 @@ class App extends Component {
 
     this.state = {
       authUser: null,
+      user: null,
       drivers: [],
     };
   }
@@ -48,7 +48,7 @@ class App extends Component {
       this.setState({
         drivers: drivers,
       });
-      console.log(this.state.drivers);
+      // console.log(this.state.drivers);
     });
   }
 
@@ -61,11 +61,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Daytona Gang Race Pool!!!</h1>
-        <div className="tonaClock">
-          <h4>Countdown to Daytona 500!!!</h4>
-          <TonaCount />
-        </div>
+        <Header />
         <Router>
           <div>
             <Nav authUser={this.state.authUser} />
