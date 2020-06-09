@@ -21,7 +21,6 @@ import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
-import firebase from "firebase";
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +40,7 @@ class App extends Component {
         : this.setState({ authUser: null });
     });
 
-    const driversRef = firebase.database().ref("drivers");
+    const driversRef = this.props.firebase.database.ref("drivers");
     driversRef.on("value", (snapshot) => {
       let drivers = snapshot.val();
 
@@ -56,17 +55,21 @@ class App extends Component {
     this.listener();
   }
 
+  updateUser = ({ user, error }) => {
+    this.setState({ user, error });
+  }
+
   render() {
-    const authUser = this.state.authUser;
+    const { authUser } = this.state;
 
     return (
       <div>
         <Header />
         <Router>
           <div>
-            <Nav authUser={this.state.authUser} />
+            <Nav authUser={authUser} />
             <hr />
-            <div className={authUser ? "show" : "noShow"}>
+            <div>
               <Route exact path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.LANDING} component={Landing} />
               <Route path={ROUTES.SIGN_OUT} component={SignOut} />
@@ -86,9 +89,9 @@ class App extends Component {
                 render={() => <Draft drivers={this.state.drivers} />}
               />
             </div>
-            <div className={authUser ? "noShow" : "show"}>
+            <div>
               <Route exact path={ROUTES.HOME} component={Home} />
-              <Route path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route path={ROUTES.SIGN_IN} render={(props) => <SignIn {...props} updateUser={this.updateUser}/>} />
               <Route path={ROUTES.SIGN_UP} component={Signup} />
             </div>
           </div>
