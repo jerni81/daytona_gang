@@ -32,13 +32,12 @@ class Firebase {
       .signInWithEmailAndPassword(email, password)
       .then((authUser) => {
         //usersRef.orderByChild(‘email’).equalTo(‘user-i-need-to-find@gmail.com’).once(‘value’).then(…)
-        let user = this.database
+        return this.database
           .ref("users/" + authUser.user.uid)
           .once("value")
           .then((user) => {
             return user.val();
           });
-        console.log("from firebase.js ", user);
       });
   };
 

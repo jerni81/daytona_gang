@@ -32,6 +32,8 @@ class App extends Component {
       user: null,
       drivers: [],
     };
+
+    this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +58,11 @@ class App extends Component {
     this.listener();
   }
 
+  updateUser({ user, error }) { 
+    this.setState({ user, error })
+  }
+
+
   render() {
     const authUser = this.state.authUser;
 
@@ -66,7 +73,8 @@ class App extends Component {
           <div>
             <Nav authUser={this.state.authUser} />
             <hr />
-            <div className={authUser ? "show" : "noShow"}>
+            <div>
+            {/* <div className={authUser ? "show" : "noShow"}> */}
               <Route exact path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.LANDING} component={Landing} />
               <Route path={ROUTES.SIGN_OUT} component={SignOut} />
@@ -86,9 +94,10 @@ class App extends Component {
                 render={() => <Draft drivers={this.state.drivers} />}
               />
             </div>
-            <div className={authUser ? "noShow" : "show"}>
-              <Route exact path={ROUTES.HOME} component={Home} />
-              <Route path={ROUTES.SIGN_IN} component={SignIn} />
+            <div>
+            {/* <div className={authUser ? "noShow" : "show"}> */}
+              <Route exact path={ROUTES.HOME} render={(props) => <Home {...props} user={this.state.user}/>} />
+              <Route path={ROUTES.SIGN_IN} render={props => <SignIn {...props} updateUser={this.updateUser} />}/>
               <Route path={ROUTES.SIGN_UP} component={Signup} />
             </div>
           </div>
