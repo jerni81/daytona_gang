@@ -9,6 +9,7 @@ const Field = (props) => {
         {props.drivers.map((driver, i) => (
           <div key={i + 1} className="item">
             {i + 1}) {driver.name} #{driver.number}
+            <button>Pick</button>
           </div>
         ))}
       </div>

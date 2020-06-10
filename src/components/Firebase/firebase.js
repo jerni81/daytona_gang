@@ -31,7 +31,6 @@ class Firebase {
     return this.auth
       .signInWithEmailAndPassword(email, password)
       .then((authUser) => {
-        //usersRef.orderByChild(‘email’).equalTo(‘user-i-need-to-find@gmail.com’).once(‘value’).then(…)
         return this.database
           .ref("users/" + authUser.user.uid)
           .once("value")

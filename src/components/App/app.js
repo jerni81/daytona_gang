@@ -21,7 +21,6 @@ import Draft from "../Draft/draft";
 
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
-import firebase from "firebase";
 
 class App extends Component {
   constructor(props) {
@@ -30,10 +29,9 @@ class App extends Component {
     this.state = {
       authUser: null,
       user: null,
+      error: null,
       drivers: [],
     };
-
-    this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +41,7 @@ class App extends Component {
         : this.setState({ authUser: null });
     });
 
-    const driversRef = firebase.database().ref("drivers");
+    const driversRef = this.props.firebase.database.ref("drivers");
     driversRef.on("value", (snapshot) => {
       let drivers = snapshot.val();
 
@@ -52,29 +50,50 @@ class App extends Component {
       });
       // console.log(this.state.drivers);
     });
+
+    setTimeout(() => {
+      if (this.state.authUser != null) {
+        const userRef = this.props.firebase.database.ref(
+          "users/" + this.state.authUser.uid
+        );
+        userRef.on("value", (snapshot) => {
+          let user = snapshot.val();
+
+          this.setState({
+            user: user,
+          });
+        });
+      }
+    }, 500);
+  }
+
+  componentDidUpdate() {
+    console.log("driver log", this.state.drivers);
+    if (this.state.authUser != null) {
+      console.log(this.state.authUser.uid);
+    }
+    console.log("User in state", this.state.user);
   }
 
   componentWillUnmount() {
     this.listener();
   }
 
-  updateUser({ user, error }) { 
-    this.setState({ user, error })
-  }
-
+  updateUser = ({ user }) => {
+    this.setState({ user });
+  };
 
   render() {
-    const authUser = this.state.authUser;
+    const { authUser } = this.state;
 
     return (
       <div>
         <Header />
         <Router>
           <div>
-            <Nav authUser={this.state.authUser} />
+            <Nav authUser={authUser} />
             <hr />
             <div>
-            {/* <div className={authUser ? "show" : "noShow"}> */}
               <Route exact path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.LANDING} component={Landing} />
               <Route path={ROUTES.SIGN_OUT} component={SignOut} />
@@ -91,13 +110,19 @@ class App extends Component {
               />
               <Route
                 path={ROUTES.DRAFT}
-                render={() => <Draft drivers={this.state.drivers} />}
+                render={() => (
+                  <Draft user={this.state.user} drivers={this.state.drivers} />
+                )}
               />
             </div>
             <div>
-            {/* <div className={authUser ? "noShow" : "show"}> */}
-              <Route exact path={ROUTES.HOME} render={(props) => <Home {...props} user={this.state.user}/>} />
-              <Route path={ROUTES.SIGN_IN} render={props => <SignIn {...props} updateUser={this.updateUser} />}/>
+              <Route exact path={ROUTES.HOME} component={Home} />
+              <Route
+                path={ROUTES.SIGN_IN}
+                render={(props) => (
+                  <SignIn {...props} updateUser={this.updateUser} />
+                )}
+              />
               <Route path={ROUTES.SIGN_UP} component={Signup} />
             </div>
           </div>
