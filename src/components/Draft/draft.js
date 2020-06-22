@@ -6,15 +6,15 @@ import Field from "./field";
 import "./draft.css";
 
 const Draft = (props) => {
-  // console.log(props);
+  // console.log("from draft", user);
 
   return (
     <div className="draft">
       <div className="sidebar">
         <DraftTime />
-        <UPicks user={props.user} />
+        <UPicks user={props.user}/>  
       </div>
-      <Field drivers={props.drivers} />
+      <Field drivers={props.drivers} authUser={props.authUser}/>
     </div>
   );
 };

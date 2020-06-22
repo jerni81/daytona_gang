@@ -1,14 +1,16 @@
 import React from "react";
 import "./draft.css";
 
-const UPicks = (props) => {
-  // console.log(props);
-
+const UPicks = ({ user = {} }) => {
+  // console.log("from Upick", user);
+  // console.log("frim Upick", user.username);
+  
+  
   return (
     <div>
-      {/* <h1>{props.user.username}</h1>
-      <h2>Driver 1:{props.user.driver1}</h2>
-      <h2>Driver 2:{props.user.driver2}</h2> */}
+      <h1>{user.username}</h1>
+      {/* <h2>Driver 1:{user.driver1.driver.name}</h2>
+      <h2>Driver 2:{user.driver2.driver.name}</h2> */}
     </div>
   );
 };

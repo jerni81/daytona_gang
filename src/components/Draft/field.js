@@ -2,6 +2,7 @@ import React from "react";
 import "./draft.css";
 
 const Field = (props) => {
+  
   return (
     <div>
       <h1>Field</h1>

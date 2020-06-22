@@ -7,7 +7,6 @@ const TonaCount = () => (
       dateTo="Febuary 14, 2021 03:00:00 GMT+03:00"
       callback={() => alert("Hello")}
     />
-    ;
   </div>
 );
 

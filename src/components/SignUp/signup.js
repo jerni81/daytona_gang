@@ -5,7 +5,7 @@ import "./signup.css";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
-import firebase, { auth } from "firebase";
+import firebase from "firebase";
 
 const SignUp = () => (
   <div>
