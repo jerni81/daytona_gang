@@ -4,8 +4,7 @@ import "./draft.css";
 const UPicks = ({ user = {} }) => {
   // console.log("from Upick", user);
   // console.log("frim Upick", user.username);
-  
-  
+
   return (
     <div>
       <h1>{user.username}</h1>

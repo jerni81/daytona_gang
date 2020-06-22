@@ -12,9 +12,9 @@ const Draft = (props) => {
     <div className="draft">
       <div className="sidebar">
         <DraftTime />
-        <UPicks user={props.user}/>  
+        <UPicks user={props.user} />
       </div>
-      <Field drivers={props.drivers} authUser={props.authUser}/>
+      <Field drivers={props.drivers} authUser={props.authUser} />
     </div>
   );
 };

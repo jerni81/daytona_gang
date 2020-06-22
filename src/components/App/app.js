@@ -38,17 +38,17 @@ class App extends Component {
     this.listener = this.props.firebase.auth.onAuthStateChanged((authUser) => {
       authUser
         ? this.setState({ authUser }, (authUser) => {
-          const userRef = this.props.firebase.database.ref(
-            "users/" + this.state.authUser.uid
-          );
-          userRef.on("value", (snapshot) => {
-            let user = snapshot.val();
-  
-            this.setState({
-              user: user,
+            const userRef = this.props.firebase.database.ref(
+              "users/" + this.state.authUser.uid
+            );
+            userRef.on("value", (snapshot) => {
+              let user = snapshot.val();
+
+              this.setState({
+                user: user,
+              });
             });
-          });
-        })
+          })
         : this.setState({ authUser: null });
     });
 
@@ -77,61 +77,66 @@ class App extends Component {
   updateUser = ({ user }) => {
     this.setState({ user });
   };
-  
 
   render() {
     const { authUser } = this.state;
 
-    if (typeof authUser === 'undefined') {
-      return <div>This is loading slower then Martin Truex drives!!</div>
+    if (typeof authUser === "undefined") {
+      return <div>This is loading slower then Martin Truex drives!!</div>;
     }
 
-    if (typeof authUser === 'null') {
-      return <div><Route exact path={ROUTES.HOME} component={Home} /></div>
+    if (typeof authUser === "null") {
+      return (
+        <div>
+          <Route exact path={ROUTES.HOME} component={Home} />
+        </div>
+      );
     }
 
     return (
       <div>
         <Header />
 
+        <div>
+          <Nav authUser={authUser} />
+          <hr />
           <div>
-            <Nav authUser={authUser} />
-            <hr />
-            <div>
-          
-              <Route exact path={ROUTES.HOME} component={Home} />
-              <Route path={ROUTES.LANDING} component={Landing} />
-              <Route path={ROUTES.SIGN_OUT} component={SignOut} />
-              <Route path={ROUTES.PASS_CHANGE} component={PassChange} />
-              <Route path={ROUTES.PASS_FORGET} component={PassForget} />
-              <Route path={ROUTES.ACCOUNT} component={Account} />
-              <Route path={ROUTES.ADMIN} component={Admin} />
+            <Route exact path={ROUTES.HOME} component={Home} />
+            <Route path={ROUTES.LANDING} component={Landing} />
+            <Route path={ROUTES.SIGN_OUT} component={SignOut} />
+            <Route path={ROUTES.PASS_CHANGE} component={PassChange} />
+            <Route path={ROUTES.PASS_FORGET} component={PassForget} />
+            <Route path={ROUTES.ACCOUNT} component={Account} />
+            <Route path={ROUTES.ADMIN} component={Admin} />
 
-              <Route path={ROUTES.RULES} component={Rules} />
-              <Route path={ROUTES.LEADERBOARD} component={LeaderBoard} />
-              <Route
-                path={ROUTES.GRID}
-                render={() => <Grid drivers={this.state.drivers} />}
-              />
-              <Route
-                path={ROUTES.DRAFT}
-                render={(props) => (
-                  <Draft {...props} user={this.state.user} drivers={this.state.drivers} />
-                )}
-              />
-            </div>
-            <div>
-              <Route exact path={ROUTES.HOME} component={Home} />
-              <Route
-                path={ROUTES.SIGN_IN}
-                render={(props) => (
-                  <SignIn {...props} updateUser={this.updateUser} />
-                )}
-              />
-              <Route path={ROUTES.SIGN_UP} component={Signup} />
-            </div>
+            <Route path={ROUTES.RULES} component={Rules} />
+            <Route path={ROUTES.LEADERBOARD} component={LeaderBoard} />
+            <Route
+              path={ROUTES.GRID}
+              render={() => <Grid drivers={this.state.drivers} />}
+            />
+            <Route
+              path={ROUTES.DRAFT}
+              render={(props) => (
+                <Draft
+                  {...props}
+                  user={this.state.user}
+                  drivers={this.state.drivers}
+                />
+              )}
+            />
           </div>
-       
+          <div>
+            <Route exact path={ROUTES.HOME} component={Home} />
+            <Route
+              path={ROUTES.SIGN_IN}
+              render={(props) => (
+                <SignIn {...props} updateUser={this.updateUser} />
+              )}
+            />
+            <Route path={ROUTES.SIGN_UP} component={Signup} />
+          </div>
+        </div>
       </div>
     );
   }
